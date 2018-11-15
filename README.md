@@ -1,5 +1,8 @@
 # RNAgen
 
+
+- using RNA_env conda environment
+
 ### Workflow
 
 1) Parse sequence from file
