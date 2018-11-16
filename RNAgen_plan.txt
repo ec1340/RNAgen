@@ -1,16 +1,17 @@
-# RNAgen Overview
+# RNAgen Overview - to be called RNAAnalysis 
+# import RNAAnalysis as rnaa
 
 Goal: 
 To have the following process 
 - RNA seq 
 	- taken from either a string
-	- from miRBase id (ex. hsa-let-7a-1)
-	- from miRBase Accession number (ex. MI0000060)
+	- from miRBase id (ex. hsa-let-7a-1) # later
+	- from miRBase Accession number (ex. MI0000060) # later
 - N foldings of sequence
-	- generated using RNAfold
-	- takes in 
+	- can generate using RNAfold
+	- can take in already generated structure from data # later
 - Get represenations of foldings
-	- dot bracket
+	- dot bracket - default output from RNAfold
 	- 2 channel binary
 	- 1 channel binary
 	- 8 nucleotide rep? (unbonded A != bonded A)
@@ -31,11 +32,15 @@ To have the following process
 	- sequence
 	- length
 	- fasta id?
-- Folding
+- SecStruct
+	- takes in from Sequence
 	- sequence
-	- representation methods
-	- energy
+	- folding function with energy window
+	- representations methods after folding
+	- energies 
 - Distance
+	- takes in SecStruct class
 	- sequence
 	- distance metrics
-- 
+		- returns matrices
+
