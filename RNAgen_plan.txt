@@ -1,0 +1,41 @@
+# RNAgen Overview
+
+Goal: 
+To have the following process 
+- RNA seq 
+	- taken from either a string
+	- from miRBase id (ex. hsa-let-7a-1)
+	- from miRBase Accession number (ex. MI0000060)
+- N foldings of sequence
+	- generated using RNAfold
+	- takes in 
+- Get represenations of foldings
+	- dot bracket
+	- 2 channel binary
+	- 1 channel binary
+	- 8 nucleotide rep? (unbonded A != bonded A)
+- NxN distance matrix of the foldings
+	- (leichenstein dist)
+	- other distance matrices
+- Clustering on distance matrix
+	- diffusion maps
+	- MDS
+	- PHATE
+- Compare PHATE plots between sequences
+
+
+
+# Classes
+
+- Sequence
+	- sequence
+	- length
+	- fasta id?
+- Folding
+	- sequence
+	- representation methods
+	- energy
+- Distance
+	- sequence
+	- distance metrics
+- 
