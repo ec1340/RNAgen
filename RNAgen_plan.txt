@@ -28,19 +28,38 @@ To have the following process
 
 # Classes
 
-- Sequence
+- PrimStruc (abc)
 	- sequence
 	- length
+	- composition
 	- fasta id?
-- SecStruct
-	- takes in from Sequence
+	-child classes
+		- miRNA
+
+- SecStruct (abc)
+	- takes in from PrimStruc
 	- sequence
 	- folding function with energy window
 	- representations methods after folding
 	- energies 
-- Distance
-	- takes in SecStruct class
+	- child classes
+		- Folded_from_RNAfold
+		- Folded_from_Sfold
+
+- Representations (abc)
+	- takes in data from SecStruct
+	- shape
+	- visualize
+	- child classes
+		 - dot bracket
+		 - 1 channel
+		 - 2 channel
+		 - 8 nucleotides 
+
+- Distance (abc)
+	- takes in data from Representation class
 	- sequence
 	- distance metrics
 		- returns matrices
+
 

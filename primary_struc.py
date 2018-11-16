@@ -48,7 +48,7 @@ class PrimStruc():
     @classmethod
     def from_txt(self, filename):
         """import sequence from txt file
-        
+        s
         Args:
             filename (txt): text file with only sequence inside
         
