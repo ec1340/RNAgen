@@ -7,6 +7,10 @@ To have the following process
 	- taken from either a string
 	- from miRBase id (ex. hsa-let-7a-1) # later
 	- from miRBase Accession number (ex. MI0000060) # later
+
+transition:
+- maybe have a function in the RNAseq class ".fold()" that returns a SecStruct class
+
 - N foldings of sequence
 	- can generate using RNAfold
 	- can take in already generated structure from data # later
@@ -61,5 +65,8 @@ To have the following process
 	- sequence
 	- distance metrics
 		- returns matrices
-
+		- Lichenstein distance 
+		- autoencoder distance
+		- ...
+	-
 
