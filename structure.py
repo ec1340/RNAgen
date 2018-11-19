@@ -1,5 +1,5 @@
 """
-Secondary Structure classes 
+Secondary Structure classes
 
 Going to call file: "structure.py"
 RNA folding
@@ -10,7 +10,8 @@ To do:
 
 
 import RNA  # RNAfold python wrapper
-#import abc
+import time
+# import abc
 
 # abstract class for any 2D structure
 
@@ -64,13 +65,40 @@ class RNAfolded(SecondaryStructure):
 
         if not structure == None:
             # struct_id
-            stru_id = "structure_{}_{:.4f}".format(data['counter'], energy)
+            stru_id = "structure_{}_{:.4f}".format(len(data), energy)
 
             # save structure
             data[stru_id] = structure
 
             # increase structure counter
-            data['counter'] = data['counter'] + 1
+            # counter += 1
+
+            if len(data) % 10000 == 0:
+                print("{} structures folded".format(len(data)))
+
+    # @classmethod
+    # def HMC_folding_to_dict(cls, structure, energy, data):
+    #     """
+    #     helper function for the fold_from_str() function
+    #     """
+    #     # dictionary to hold the folding
+    #     # subopt_folds = {'counter': 1, 'sequence': sequence}
+
+    #     if not structure == None:
+
+    #         if len(data) > 1:
+
+    #         # struct_id
+    #         stru_id = "structure_{}".format(len(data), energy)
+
+    #         # save structure
+    #         data[stru_id] = structure
+
+    #         # increase structure counter
+    #         #counter += 1
+
+    #         if len(data) % 10000 == 0:
+    #             print("{} structures folded".format(len(data)))
 
     def fold(self, ewindow=500):
         if self.sequence == None:
@@ -80,7 +108,7 @@ class RNAfolded(SecondaryStructure):
             RNA.cvar.uniq_ML = 1
 
             # initalize dictionary to store folds
-            self.subopt_folds = {'counter': 1, 'sequence': self.sequence}
+            self.subopt_folds = {}
 
             # Create a 'fold_compound' for our sequence
             RNAfold_compound = RNA.fold_compound(self.sequence)
@@ -99,8 +127,7 @@ class RNAfolded(SecondaryStructure):
     @classmethod
     def fold_from_str(cls, str_seq, ewindow=500):
         """Folding from a sequence string """
-
-        subopt_folds = {'counter': 1, 'sequence': str_seq}
+        subopt_folds = {}
 
         # Set global switch for unique ML decomposition
         RNA.cvar.uniq_ML = 1
@@ -111,8 +138,13 @@ class RNAfolded(SecondaryStructure):
         # fold the sequence
         # energy window is in dacal units (500 dacal/mol = 5 kcal/mol)
 
+        print("folding RNA ...")
+        ts = time.time()
         RNAfold_compound.subopt_cb(ewindow,
                                    cls.folding_to_dict,
                                    subopt_folds)
+        te = time.time()
+        print("finished folding {} structures in {:.3f} sec".format(len(subopt_folds),
+                                                                    te - ts))
 
         return cls(sequence=str_seq, length=len(str_seq), subopt_folds=subopt_folds)
